@@ -7,7 +7,7 @@ import NavBar from './NavBar';
 const EventTimer = () => {
   //console.log(finalTime);
   // eslint-disable-next-line
-  const [countdownDate, setCountdownDate] = useState(new Date('Feb 16, 22 19:15:00 GMT+05:30').getTime());
+  const [countdownDate, setCountdownDate] = useState(new Date('Feb 16, 22 17:00:00 GMT+05:30').getTime());
  // const navigate = useNavigate();
   const [state, setState] = useState({
     days: 0,
@@ -97,7 +97,7 @@ let interval="";
           state.days <= 0 && state.hours <= 0 && state.minutes <= 0 && state.seconds <= 0 ? (
             <div>
                 <Realistic />
-                <button onClick={e=>console.log("clicked")}>Launch</button>
+                <a href="/info" class="button">Launch</a>
             </div>
           ):(
               <div></div>
