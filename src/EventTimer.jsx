@@ -7,7 +7,7 @@ import NavBar from './NavBar';
 const EventTimer = () => {
   //console.log(finalTime);
   // eslint-disable-next-line
-  const [countdownDate, setCountdownDate] = useState(new Date('Feb 16, 22 17:00:00 GMT+05:30').getTime());
+  const [countdownDate, setCountdownDate] = useState(new Date('Feb 16, 22 21:08:50 GMT+05:30').getTime());
  // const navigate = useNavigate();
   const [state, setState] = useState({
     days: 0,
@@ -65,11 +65,22 @@ let interval="";
     <div>
       <NavBar/>
       <h3 className="subtitle">We welcome you to the live launch of HydroMetLab Web Application</h3>
-      <h4 className="subtitle">Launch Starts in ....</h4>
+      {
+        state.days <= 0 && state.hours <= 0 && state.minutes <= 0 && state.seconds <= 0 ? (
+          <h4 className="subtitle">It's Ready for Launch.... </h4>
+        ):(
+          <h4 className="subtitle">Launch Starts in....</h4>
+        )
+      }
+      
       <div className='countdown-wrapper'>
         <div className='time-section' >
           <div className='time' style={{color:"#4dd44d"}}>{state.days || '0'}</div>
-          <small className="time-text">Days</small>
+          <small className="time-text">
+            {
+              state.days === "1" ? "day":"days"
+            }
+          </small>
         </div>
         <div className='time-section'>
           <div className='time'>:</div>
