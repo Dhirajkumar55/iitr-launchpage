@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 
 const EventTimer = () => {
   //console.log(finalTime);
+  // eslint-disable-next-line
   const [countdownDate, setCountdownDate] = useState(new Date('Feb 16, 22 19:15:00 GMT+05:30').getTime());
  // const navigate = useNavigate();
   const [state, setState] = useState({
@@ -16,6 +17,7 @@ const EventTimer = () => {
   });
 let interval="";
   useEffect(() => {
+    // eslint-disable-next-line
     interval = setInterval(() => setNewTime(), 1000);
   }, []);
 

@@ -47,6 +47,7 @@ export default function Realistic() {
     setIntervalId(null);
   }, [intervalId]);
 
+  // eslint-disable-next-line
   const stopAnimation = useCallback(() => {
     clearInterval(intervalId);
     setIntervalId(null);
