@@ -7,8 +7,9 @@ import NavBar from './NavBar';
 const EventTimer = () => {
   //console.log(finalTime);
   // eslint-disable-next-line
-  const [countdownDate, setCountdownDate] = useState(new Date('Feb 16, 22 21:08:50 GMT+05:30').getTime());
+  //const [countdownTimer, setcountdownTimer] = useState(10);
  // const navigate = useNavigate();
+  const[show,setShow] = useState(false);
   const [state, setState] = useState({
     days: 0,
     hours: 0,
@@ -21,44 +22,28 @@ let interval="";
     interval = setInterval(() => setNewTime(), 1000);
   }, []);
 
+  let timer = 10;
   const setNewTime = () => {
-    if (countdownDate) {
-      const currentTime = new Date().getTime();
-      
-      const distanceToDate = countdownDate - currentTime;
-      
-      let days = Math.floor(distanceToDate / (1000 * 60 * 60 * 24));
-      let hours = Math.floor(
-        (distanceToDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-      );
-      let minutes = Math.floor(
-        (distanceToDate % (1000 * 60 * 60)) / (1000 * 60),
-      );
-      let seconds = Math.floor((distanceToDate % (1000 * 60)) / 1000);
 
-      const numbersToAddZeroTo = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-      
-      if(days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0){
-        days = 0;
-        hours = 0;
-        minutes = 0;
-        seconds = 0;
-        console.log("Time Reached")
-        clearInterval(interval);
-      }
-      else{
-          days = `${days}`;
-        if (numbersToAddZeroTo.includes(hours)) {
-          hours = `0${hours}`;
-        } else if (numbersToAddZeroTo.includes(minutes)) {
-          minutes = `0${minutes}`;
-        } else if (numbersToAddZeroTo.includes(seconds)) {
-          seconds = `0${seconds}`;
-        }
-      }
-    
-      setState({ days: days, hours: hours, minutes, seconds });
+    let days = 0;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = timer;
+    const numbersToAddZeroTo = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    if(timer===0){
+      clearInterval(interval);
+      setState({days:0,hours:0,minutes:0,seconds:0});
+      setTimeout(() => setShow(true),3000);
     }
+    else{
+      if (numbersToAddZeroTo.includes(seconds)) {
+        seconds = `0${seconds}`;
+      }
+      setState({days:days,hours:hours,minutes:minutes,seconds:seconds});
+      timer--;
+    }
+    
+   
   };
 
   return (
@@ -75,7 +60,7 @@ let interval="";
       
       <div className='countdown-wrapper'>
         <div className='time-section' >
-          <div className='time' style={{color:"#4dd44d"}}>{state.days || '0'}</div>
+          <div className='time' style={{color:"#4dd44d"}}>{state.days || '00'}</div>
           <small className="time-text">
             {
               state.days === "1" ? "day":"days"
@@ -108,7 +93,7 @@ let interval="";
           state.days <= 0 && state.hours <= 0 && state.minutes <= 0 && state.seconds <= 0 ? (
             <div>
                 <Realistic />
-                <a href="/info" class="button">Launch</a>
+                {show? <div className='button-div'><a href="/info" class="button">Launch</a></div>:<div/>}
             </div>
           ):(
               <div></div>
