@@ -93,7 +93,7 @@ let interval="";
           state.days <= 0 && state.hours <= 0 && state.minutes <= 0 && state.seconds <= 0 ? (
             <div>
                 <Realistic />
-                {show? <div className='button-div'><a href="/info" class="button">Launch</a></div>:<div/>}
+                {show? <div className='button-div'><a href="http://hydrometlab.in" class="button">Launch</a></div>:<div/>}
             </div>
           ):(
               <div></div>
